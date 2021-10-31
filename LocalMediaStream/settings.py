@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(#fmr$rz)7$t6jhjd6@azy@gee!!1st)=_351+7%-spy^pgi(e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["localmediaflix.herokuapp.com", "127.0.0.1"]
 
