@@ -1,0 +1,49 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="mx-5 navbar-brand" href="{% url 'home' %}">
+      <img src="{% static 'img/logo.png' %}" alt="" width="30" height="30">
+    </a>
+    <div class="mx-3 collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item mx-2">
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link active" href="{% url 'about' %}">About Us</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link active" href="{% url 'contact' %}">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+
+      {% if request.user.is_authenticated %}
+      <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle fw-bold text-warning" href="#" id="navbarDarkDropdownMenuLink"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user"></i> {{request.user|capfirst}}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+              <li><a class="dropdown-item" href="{% url 'userprofile' user.id %}">Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'changepass' %}">Change Password</a></li>
+              <li><a class="dropdown-item" href="{% url 'media' %}">Your Media</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <li>
+        <a class="btn btn-outline-danger mx-5" href="{% url 'logout' %}">Logout <i class="fas fa-sign-out-alt"></i></a>
+      </li>
+      {% else %}
+      <li>
+        <a class="btn btn-outline-warning mx-5" href="{% url 'login' %}">Login <i class="fas fa-sign-in-alt"></i></a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>

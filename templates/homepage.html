@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+{% include 'carousel.html' %}
+
+<!--  Section - Blink Title -->
+<section class="jumbotron bd text-center my-5">
+   <div class="container">
+      <h1 class="jumbotron-heading"><span id="typed"></span></h1>
+      <p class="lead text-muted">Want to keep favorite movies secure on server? Want to watch movies anywhere? Then
+         <span class="fw-bold">'Local Media Flix'</span> is for you. Its free!<br>
+         Upload Movies, Web-series, Music and watch it from anytime, anywhere.
+      </p>
+      <p>
+         <a href="{% url 'media' %}" class="btn btn-warning mx-2 my-2">Media</a>
+
+         {% if user.is_superuser %}
+            <a href="{% url 'admincreateuser' %}" class="btn btn-primary mx-2 my-2">Create User</a>
+         {% endif %}
+      </p>
+   </div>
+</section>
+
+
+<!-- Script - Blink Title -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.9/typed.min.js" async defer></script>
+<script>
+   window.onload = function () {
+      //console.log("loaded")
+      var typed = new Typed('#typed', {
+         strings: ["Welcome to Local Media Server", "Watch Movies", "Watch Web-series",
+            "Listen Favorite Music", "Just Upload and Enjoy!", "and Many More Features :)"
+         ],
+         backSpeed: 15,
+         smartBackspace: true,
+         backDelay: 1200,
+         startDelay: 1000,
+         typeSpeed: 25,
+         loop: true,
+      });
+   };
+</script>
+{% endblock %}

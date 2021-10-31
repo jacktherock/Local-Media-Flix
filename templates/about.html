@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us{% endblock title %}
+
+{% block content %}
+
+<div class="container col-sm-10">
+   <h3 class="alert alert-info text-center mt-3">About Us</h3>
+
+   <div class="container col-sm-10">
+      <div class="row">
+         <div class="text-center col-sm-3 card mx-2 mb-2 p-2 align-items-center" style="width: 15rem;">
+            <h4 class=" container  text-center alert-heading alert-warning">About Me</h4>
+            <img src="{% static 'img/profile.jpg' %}" class="padded card-img-top img-thumbnail" alt="...">
+            <div class="card-body">
+               <h5 class="card-title text-center">Abhijeet Sonawane</h5>
+               <p class="card-text text-center">Computer Science Student<br> Frontend & Backend </p>
+               <a href="https://github.com/jacktherock" class="btn btn-sm btn-dark"> <i
+                     class="icon ion-social-github"></i> Github</a>
+            </div>
+         </div>
+
+         <div class="container col-sm-8 mb-2 border ">
+            <h4 class="text-center mt-2 alert-heading alert-warning">About Website</h4>
+
+            <div class="mx-5 mt-3">
+               <h5>Summary:</h5>
+               <p> A Local Media Streaming Server where you can upload media files like movies, music and access media
+                  locally.</p>
+            </div>
+
+            <div class="mx-5">
+               <h5>Build Using :</h5>
+               <ul>
+                  <li>
+                     Django
+                  </li>
+                  <li>
+                     HTML
+                  </li>
+                  <li>
+                     CSS
+                  </li>
+                  <li>
+                     JavaScript
+                  </li>
+                  <li>
+                     Bootstrap
+                  </li>
+                  <li>
+                     FontAwesome
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+{% endblock content %}
