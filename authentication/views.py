@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, MyUserChangeForm, SignupForm
 from authentication.forms import AdminCreateUserForm
-from django.views import View
 
 
 def adminCreateUser(request):
@@ -44,16 +43,18 @@ def userProfile(request, id):
     else:
         return HttpResponseRedirect("/login/")
 
+
 def user_signup(request):
-    if request.method=='POST':
+    if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, "Account created successfully! Please login !")
-            return redirect('/login/')
+            return redirect("/login/")
     else:
         form = SignupForm()
     return render(request, "signup.html", {"form": form})
+
 
 def user_login(request):
     if not request.user.is_authenticated:
@@ -78,4 +79,3 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect("/login/")
-

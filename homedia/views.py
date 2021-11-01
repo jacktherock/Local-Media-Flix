@@ -4,7 +4,6 @@ from .models import Contact, Media
 from django.http import HttpResponseRedirect
 from django.views import View
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 
@@ -40,27 +39,12 @@ def mediaUser(request):
         return HttpResponseRedirect("/login/")
 
 
-# class UploadView(View):
-#     def get(self, request):
-#         file = MediaForm()
-#         return render(request, "upload.html", {"files": file})
-
-#     def post(self, request):
-#         file = MediaForm(
-#             request.POST, request.FILES, instance=Media(user=self.request.user)
-#         )
-#         if file.is_valid():
-#             profile = file.save(commit=False)
-#             profile.user = request.user
-#             profile.save()
-#             messages.success(request, "Media Uploaded Successfully !")
-#             return redirect("/upload/")
-#         return render(request, "upload.html", {"files": file})
-
 def upload(request):
     if request.user.is_authenticated:
         if request.method == "POST":
-            file = MediaForm(request.POST, request.FILES, instance=Media(user=request.user))
+            file = MediaForm(
+                request.POST, request.FILES, instance=Media(user=request.user)
+            )
             if file.is_valid():
                 profile = file.save(commit=False)
                 profile.user = request.user
@@ -72,6 +56,7 @@ def upload(request):
         return render(request, "upload.html", {"files": file})
     else:
         return HttpResponseRedirect("/login/")
+
 
 def deleteMedia(request, id):
     if request.user.is_authenticated:
@@ -87,40 +72,43 @@ def allUsers(request):
     if request.user.is_authenticated:
         if request.user.is_superuser:
             users = User.objects.all()
-            return render(request, 'allusers.html', {'users':users})
+            return render(request, "allusers.html", {"users": users})
         else:
             return redirect("/")
     else:
         return HttpResponseRedirect("/login/")
-    
+
+
 def delete_user(request, id):
     if request.user.is_authenticated:
         if request.user.is_superuser:
             user = User.objects.get(pk=id)
             user.delete()
-            return redirect('/allusers/')
+            return redirect("/allusers/")
         else:
-            return redirect('/')
+            return redirect("/")
     else:
-            return redirect('/login/')
+        return redirect("/login/")
+
 
 def allContacts(request):
     if request.user.is_authenticated:
         if request.user.is_superuser:
             contacts = Contact.objects.all()
-            return render(request, 'allcontacts.html', {'contacts':contacts})
+            return render(request, "allcontacts.html", {"contacts": contacts})
         else:
             return redirect("/")
     else:
         return HttpResponseRedirect("/login/")
-    
+
+
 def delete_contact(request, id):
     if request.user.is_authenticated:
         if request.user.is_superuser:
             contact = Contact.objects.get(pk=id)
             contact.delete()
-            return redirect('/allcontacts/')
+            return redirect("/allcontacts/")
         else:
-            return redirect('/')
+            return redirect("/")
     else:
-            return redirect('/login/')
+        return redirect("/login/")
