@@ -24,3 +24,4 @@ urlpatterns = [
     path('', include('homedia.urls')),
     path('', include('authentication.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
