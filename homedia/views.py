@@ -22,6 +22,7 @@ def contact(request):
         if fm.is_valid():
             fm.save()
             messages.success(request, "Message Sent Successfully !")
+            return redirect("/contact/")
     else:
         fm = ContactForm()
     return render(request, "contact.html", {"form": fm})
