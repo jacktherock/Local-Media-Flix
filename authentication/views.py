@@ -4,8 +4,9 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .forms import LoginForm, MyUserChangeForm
+from .forms import LoginForm, MyUserChangeForm, SignupForm
 from authentication.forms import AdminCreateUserForm
+from django.views import View
 
 
 def adminCreateUser(request):
@@ -43,6 +44,21 @@ def userProfile(request, id):
     else:
         return HttpResponseRedirect("/login/")
 
+""" New Customer registration form """
+class Signup(View):
+    """ if GET request happen then blank SignUpform renders """
+    def get(self, request):
+        form = SignupForm()
+        return render(request, "signup.html", {"form": form})
+
+    """ if user fills all the required fields and submit then POST request happen and all the data will save in db """
+    def post(self, request):
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Account created successfully! Please login !")
+            # return redirect('accounts/login/')
+        return render(request, "signup.html", {"form": form})
 
 def user_login(request):
     if not request.user.is_authenticated:

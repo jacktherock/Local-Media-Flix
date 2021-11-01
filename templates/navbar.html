@@ -32,6 +32,9 @@
               <li><a class="dropdown-item" href="{% url 'userprofile' user.id %}">Profile</a></li>
               <li><a class="dropdown-item" href="{% url 'changepass' %}">Change Password</a></li>
               <li><a class="dropdown-item" href="{% url 'media' %}">Your Media</a></li>
+              {% if request.user.is_superuser %}
+              <li><a class="dropdown-item" href="{% url 'allusers' %}">All Users</a></li>
+              {% endif %}
             </ul>
           </li>
         </ul>
@@ -41,7 +44,10 @@
       </li>
       {% else %}
       <li>
-        <a class="btn btn-outline-warning mx-5" href="{% url 'login' %}">Login <i class="fas fa-sign-in-alt"></i></a>
+        <a class="btn btn-outline-info mx-2" href="{% url 'signup' %}">SignUp <i class="fas fa-user-plus"></i></a>
+      </li>
+      <li>
+        <a class="btn btn-outline-warning me-5" href="{% url 'login' %}">Login <i class="fas fa-sign-in-alt"></i></a>
       </li>
       {% endif %}
     </ul>

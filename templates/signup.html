@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Login{% endblock title %}
+{% block title %}SignUp{% endblock title %}
 
 {% block content %}
 <div class="container">
-    <div class="row my-3">
+    <div class="row mb-3">
         <div class="col-sm-6 offset-sm-3">
-            <h3 class="text-center alert alert-info">Login </h3>
+            <h3 class="text-center alert alert-info mt-3">SignUp</h3>
 
             <form action="" method="post" novalidate class="shadow p-5 border-top"
                 style="border-radius: 15px; padding: 5px 30px">
@@ -21,9 +21,8 @@
                     </small>
                     {{fm}}
                 {% endfor %}
-                <input type="submit" class="btn btn-primary mt-3" value="Login">
-                <!-- <p class="mt-2">Don't Have an Account ? Please Contact <a href="{% url 'contact' %}">ADMIN</a></p> -->
-                <p class="mt-2">Don't Have an Account ? Please <a href="{% url 'signup' %}">Create Account</a></p>
+                <input type="submit" class="btn btn-primary mt-3" value="Create">
+                <p class="mt-2">Already Have an Account ? Please <a href="{% url 'login' %}">Login</a></p>
             </form>
 
             <div>

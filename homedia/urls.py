@@ -8,4 +8,5 @@ urlpatterns = [
     path('contact/',views.contact, name='contact'),
     path('upload/', views.UploadView.as_view(), name='upload'),
     path('delete/<int:id>/', views.deleteMedia, name='delete'),
+    path('allusers/', views.allUsers, name='allusers'),
 ]

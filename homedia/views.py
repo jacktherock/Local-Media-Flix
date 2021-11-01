@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 def homepage(request):
@@ -64,3 +65,16 @@ def deleteMedia(request, id):
             return HttpResponseRedirect("/media/")
     else:
         return HttpResponseRedirect("/login/")
+
+
+def allUsers(request):
+    if request.user.is_authenticated:
+        if request.user.is_superuser:
+            users = User.objects.all()
+            return render(request, 'allusers.html', {'users':users})
+        else:
+            return redirect("/")
+    else:
+        return HttpResponseRedirect("/login/")
+    
+        
