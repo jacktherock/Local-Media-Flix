@@ -6,6 +6,7 @@
 # db.sqlite3
 media
 cleanup_unused_media.txt
+deployment.txt
 
 # Backup files # 
 *.bak 
