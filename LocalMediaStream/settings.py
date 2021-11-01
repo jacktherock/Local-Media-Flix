@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'homedia',
     'authentication',
-    'django_unused_media',
+    # 'django_unused_media',
 ]
 
 MIDDLEWARE = [
