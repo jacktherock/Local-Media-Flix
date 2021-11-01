@@ -83,3 +83,14 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect("/login/")
+
+def delete_user(request, id):
+    if request.user.is_authenticated:
+        if request.user.is_superuser:
+            user = User.objects.get(pk=id)
+            user.delete()
+            return redirect('/allusers/')
+        else:
+            return redirect('/')
+    else:
+            return redirect('/login/')

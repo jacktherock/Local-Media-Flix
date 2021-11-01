@@ -19,8 +19,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = config('SECRET_KEY')
-SECRET_KEY = ['SECRET_KEY']
+
+# SECRET_KEY = 'django-insecure-(#fmr$rz)7$t6jhjd6@azy@gee!!1st)=_351+7%-spy^pgi(e'
+# SECRET_KEY = config('SECRET_KEY') # Django .env secret key
+SECRET_KEY = ['SECRET_KEY'] # Heroku Secret key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

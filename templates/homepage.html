@@ -18,7 +18,7 @@
          <a href="{% url 'media' %}" class="btn btn-warning mx-2 my-2">Media</a>
 
          {% if user.is_superuser %}
-            <a href="{% url 'admincreateuser' %}" class="btn btn-primary mx-2 my-2">Create User</a>
+            <a href="{% url 'admincreateuser' %}" class="btn btn-primary mx-2 my-2">Create User <i class="fas fa-user-plus"></i></a>
          {% endif %}
       </p>
    </div>

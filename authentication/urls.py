@@ -6,6 +6,7 @@ from .forms import (MyChangePasswordForm)
 urlpatterns = [
     path('admincreateuser/', views.adminCreateUser, name="admincreateuser"),
     path('userprofile/<int:id>/', views.userProfile, name="userprofile"),
+    path('deleteuser/<int:id>/', views.delete_user, name="deleteuser"),
 
     path("signup/", views.Signup.as_view(), name="signup"),
     path('login/', views.user_login, name="login"),
