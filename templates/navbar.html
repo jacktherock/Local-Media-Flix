@@ -25,8 +25,8 @@
       <ul class="nav navbar-nav navbar-right">
         {% if request.user.is_authenticated %}
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle fw-bold text-warning me-5 mt-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
+          <a class="nav-link dropdown-toggle fw-bold text-warning me-5 mt-0" href="#" id="navbarDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fas fa-user"></i> {{request.user|capfirst}}
           </a>
           <ul class="dropdown-menu mb-1 dropdown-menu-dark" aria-labelledby="navbarDropdown">
@@ -35,18 +35,21 @@
             <li><a class="dropdown-item" href="{% url 'media' %}">Your Media</a></li>
             {% if request.user.is_superuser %}
             <li><a class="dropdown-item" href="{% url 'allusers' %}">All Users</a></li>
+            <li><a class="dropdown-item" href="{% url 'allcontacts' %}">All Contacts</a></li>
+            {% endif %}
           </ul>
         <li>
-          {% endif %}
           <a class="btn btn-outline-danger me-5" href="{% url 'logout' %}">Logout <i
               class="fas fa-sign-out-alt"></i></a>
         </li>
         {% else %}
         <li>
-          <a class="btn btn-outline-info mt-1 me-2" href="{% url 'signup' %}">SignUp <i class="fas fa-user-plus"></i></a>
+          <a class="btn btn-outline-info mt-1 me-2" href="{% url 'signup' %}">SignUp <i
+              class="fas fa-user-plus"></i></a>
         </li>
         <li>
-          <a class="btn btn-outline-warning mt-1 me-5" href="{% url 'login' %}">Login <i class="fas fa-sign-in-alt"></i></a>
+          <a class="btn btn-outline-warning mt-1 me-5" href="{% url 'login' %}">Login <i
+              class="fas fa-sign-in-alt"></i></a>
         </li>
         {% endif %}
         </li>

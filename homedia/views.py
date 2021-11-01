@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ContactForm, MediaForm
-from .models import Media
+from .models import Contact, Media
 from django.http import HttpResponseRedirect
 from django.views import View
 from django.contrib import messages
@@ -77,4 +77,34 @@ def allUsers(request):
     else:
         return HttpResponseRedirect("/login/")
     
-        
+def delete_user(request, id):
+    if request.user.is_authenticated:
+        if request.user.is_superuser:
+            user = User.objects.get(pk=id)
+            user.delete()
+            return redirect('/allusers/')
+        else:
+            return redirect('/')
+    else:
+            return redirect('/login/')
+
+def allContacts(request):
+    if request.user.is_authenticated:
+        if request.user.is_superuser:
+            contacts = Contact.objects.all()
+            return render(request, 'allcontacts.html', {'contacts':contacts})
+        else:
+            return redirect("/")
+    else:
+        return HttpResponseRedirect("/login/")
+    
+def delete_contact(request, id):
+    if request.user.is_authenticated:
+        if request.user.is_superuser:
+            contact = Contact.objects.get(pk=id)
+            contact.delete()
+            return redirect('/allcontacts/')
+        else:
+            return redirect('/')
+    else:
+            return redirect('/login/')

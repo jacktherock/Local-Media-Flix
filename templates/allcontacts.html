@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}All Contacts{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center my-3 alert alert-primary">All Contacts Received</h2>
+    <hr>
+    <div class="col-sm-8 container mb-5">
+    {% if contacts %}
+        <table class="text-center table table-hover">
+            <thead class="table-warning">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email ID</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in contacts %}
+                <tr>
+                    <th scope="row">{{contact.id}}</th>
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.email}}</td>
+                    <td>{{contact.message}}</td>
+                    <td>
+                        <form action="{% url 'deletecontact' contact.id %}" method="post">
+                        {% csrf_token %}
+                            <button type="submit" class=" btn btn-danger btn-sm"> <i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+    <h3 class="text-center my-3 alert alert-danger">No Contacts Received !</h3>
+    {% endif %}
+    </div>
+    <hr>
+</div>
+{% endblock content %}
