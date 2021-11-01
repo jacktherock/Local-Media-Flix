@@ -40,23 +40,38 @@ def mediaUser(request):
         return HttpResponseRedirect("/login/")
 
 
-class UploadView(View):
-    def get(self, request):
-        file = MediaForm()
-        return render(request, "upload.html", {"files": file})
+# class UploadView(View):
+#     def get(self, request):
+#         file = MediaForm()
+#         return render(request, "upload.html", {"files": file})
 
-    def post(self, request):
-        file = MediaForm(
-            request.POST, request.FILES, instance=Media(user=self.request.user)
-        )
-        if file.is_valid():
-            profile = file.save(commit=False)
-            profile.user = request.user
-            profile.save()
-            messages.success(request, "Media Uploaded Successfully !")
-            return redirect("/upload/")
-        return render(request, "upload.html", {"files": file})
+#     def post(self, request):
+#         file = MediaForm(
+#             request.POST, request.FILES, instance=Media(user=self.request.user)
+#         )
+#         if file.is_valid():
+#             profile = file.save(commit=False)
+#             profile.user = request.user
+#             profile.save()
+#             messages.success(request, "Media Uploaded Successfully !")
+#             return redirect("/upload/")
+#         return render(request, "upload.html", {"files": file})
 
+def upload(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            file = MediaForm(request.POST, request.FILES, instance=Media(user=request.user))
+            if file.is_valid():
+                profile = file.save(commit=False)
+                profile.user = request.user
+                profile.save()
+                messages.success(request, "Media Uploaded Successfully !")
+                return redirect("/upload/")
+        else:
+            file = MediaForm()
+        return render(request, "upload.html", {"files": file})
+    else:
+        return HttpResponseRedirect("/login/")
 
 def deleteMedia(request, id):
     if request.user.is_authenticated:
