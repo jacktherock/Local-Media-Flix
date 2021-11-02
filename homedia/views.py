@@ -2,43 +2,44 @@ from django.shortcuts import render, redirect
 from .forms import ContactForm, MediaForm
 from .models import Contact, Media
 from django.http import HttpResponseRedirect
-from django.views import View
 from django.contrib import messages
 from django.contrib.auth.models import User
 
-
+# homepage
 def homepage(request):
     return render(request, "homepage.html")
 
-
+# about page
 def about(request):
     return render(request, "about.html")
 
-
+# contact page & send contact message
 def contact(request):
     if request.method == "POST":
         fm = ContactForm(request.POST)
         if fm.is_valid():
             fm.save()
-            messages.success(request, "Message Sent Successfully !")
+            messages.success(request, "Thank You for Contacting Us !")
             return redirect("/contact/")
     else:
         fm = ContactForm()
     return render(request, "contact.html", {"form": fm})
 
-
+# view media
 def mediaUser(request):
     if request.user.is_authenticated:
         if request.user.is_superuser == True:
+            # admin can view all uploaded media of all users
             media = Media.objects.all()
         else:
             media = Media.objects.filter(user=request.user)
         context = {"media": media}
         return render(request, "media.html", context)
     else:
-        return HttpResponseRedirect("/login/")
+        messages.error(request, "Please Login to Access Media !")
+        return HttpResponseRedirect("/auth/auth/login/")
 
-
+# upload media
 def upload(request):
     if request.user.is_authenticated:
         if request.method == "POST":
@@ -51,64 +52,71 @@ def upload(request):
                 profile.save()
                 messages.success(request, "Media Uploaded Successfully !")
                 return redirect("/upload/")
+            else:
+                messages.error(request, "Please Select Valid Media Files !")
         else:
             file = MediaForm()
         return render(request, "upload.html", {"files": file})
     else:
-        return HttpResponseRedirect("/login/")
+        return HttpResponseRedirect("/auth/auth/login/")
 
-
+# delete media
 def deleteMedia(request, id):
     if request.user.is_authenticated:
         if request.method == "POST":
             pi = Media.objects.get(pk=id)
             pi.delete()
+            messages.success(request, "Media Deleted Successfully !")
             return HttpResponseRedirect("/media/")
     else:
-        return HttpResponseRedirect("/login/")
+        return HttpResponseRedirect("/auth/auth/login/")
 
-
+# admin can view all users
 def allUsers(request):
     if request.user.is_authenticated:
         if request.user.is_superuser:
             users = User.objects.all()
             return render(request, "allusers.html", {"users": users})
         else:
+            messages.error(request, "Unauthorized User Can't Access This Page !")
             return redirect("/")
     else:
-        return HttpResponseRedirect("/login/")
+        return HttpResponseRedirect("/auth/auth/login/")
 
-
+# admin can delete existing user
 def delete_user(request, id):
     if request.user.is_authenticated:
         if request.user.is_superuser:
             user = User.objects.get(pk=id)
             user.delete()
-            return redirect("/allusers/")
+            return redirect("/authadmin/allusers/")
         else:
+            messages.error(request, "Unauthorized User Can't Access This Page !")
             return redirect("/")
     else:
-        return redirect("/login/")
+        return redirect("/auth/auth/login/")
 
-
+# admin can view all contacts received
 def allContacts(request):
     if request.user.is_authenticated:
         if request.user.is_superuser:
             contacts = Contact.objects.all()
             return render(request, "allcontacts.html", {"contacts": contacts})
         else:
+            messages.error(request, "Unauthorized User Can't Access This Page !")
             return redirect("/")
     else:
-        return HttpResponseRedirect("/login/")
+        return HttpResponseRedirect("/auth/auth/login/")
 
-
+# admin can delete received contacts
 def delete_contact(request, id):
     if request.user.is_authenticated:
         if request.user.is_superuser:
             contact = Contact.objects.get(pk=id)
             contact.delete()
-            return redirect("/allcontacts/")
+            return redirect("/authadmin/allcontacts/")
         else:
+            messages.error(request, "Unauthorized User Can't Access This Page !")
             return redirect("/")
     else:
-        return redirect("/login/")
+        return redirect("/auth/auth/login/")

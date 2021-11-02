@@ -7,25 +7,25 @@ urlpatterns = [
     path('admincreateuser/', views.adminCreateUser, name="admincreateuser"),
     path('userprofile/<int:id>/', views.userProfile, name="userprofile"),
 
-    path("signup/", views.user_signup, name="signup"),
-    path('login/', views.user_login, name="login"),
-    path('logout/', views.user_logout, name="logout"),
+    path("auth/signup/", views.user_signup, name="signup"),
+    path('auth/login/', views.user_login, name="login"),
+    path('auth/logout/', views.user_logout, name="logout"),
 
         # ---------------------------- CHANGE PASSWORD -----------------------
     # for changing user password used built-in 'PasswordChangeView' also giving custom created template, form and after password is changed then it redirects to "/passwordchangedone/"
     path(
-        "changepass/",
+        "pass/changepass/",
         auth_views.PasswordChangeView.as_view(
             template_name="changepassword.html",
             form_class=MyChangePasswordForm,
-            success_url="/passwordchangedone/",
+            success_url="/auth/pass/passwordchangedone/",
         ),
         name="changepass",
     ),
 
     # after password is changed then it redirects here. for showing that password change is done used built-in 'PasswordChangeDoneView'. Here shows only a template . 
     path(
-        "passwordchangedone/",
+        "pass/passwordchangedone/",
         auth_views.PasswordChangeDoneView.as_view(
             template_name="passwordchangedone.html"
         ),

@@ -8,8 +8,8 @@ urlpatterns = [
     path('contact/',views.contact, name='contact'),
     path('upload/', views.upload, name='upload'),
     path('delete/<int:id>/', views.deleteMedia, name='delete'),
-    path('deleteuser/<int:id>/', views.delete_user, name="deleteuser"),
-    path('deletecontact/<int:id>/', views.delete_contact, name="deletecontact"),
-    path('allusers/', views.allUsers, name='allusers'),
-    path('allcontacts/', views.allContacts, name='allcontacts'),
+    path('authadmin/deleteuser/<int:id>/', views.delete_user, name="deleteuser"),
+    path('authadmin/deletecontact/<int:id>/', views.delete_contact, name="deletecontact"),
+    path('authadmin/allusers/', views.allUsers, name='allusers'),
+    path('authadmin/allcontacts/', views.allContacts, name='allcontacts'),
 ]

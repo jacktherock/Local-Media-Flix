@@ -7,22 +7,26 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, MyUserChangeForm, SignupForm
 from authentication.forms import AdminCreateUserForm
 
-
+# admin can create new user
 def adminCreateUser(request):
     if request.user.is_authenticated:
-        if request.method == "POST":
-            fm = AdminCreateUserForm(request.POST)
-            if fm.is_valid():
-                fm.save()
-                messages.success(request, "New User Created Successfully !")
-                return redirect("/admincreateuser/")
+        if request.user.is_superuser:
+            if request.method == "POST":
+                fm = AdminCreateUserForm(request.POST)
+                if fm.is_valid():
+                    fm.save()
+                    messages.success(request, "New User Created Successfully !")
+                    return redirect("/admincreateuser/")
+            else:
+                fm = AdminCreateUserForm()
         else:
-            fm = AdminCreateUserForm()
+            messages.error(request, "Unauthorized User Can't Access This Page !")
+            return redirect('/')
     else:
-        return redirect("/login/")
+        return redirect("/auth/auth/login/")
     return render(request, "admincreateuser.html", {"form": fm})
 
-
+# user profile
 def userProfile(request, id):
     if request.user.is_authenticated:
         if request.method == "POST":
@@ -41,21 +45,25 @@ def userProfile(request, id):
         }
         return render(request, "userprofile.html", context)
     else:
-        return HttpResponseRedirect("/login/")
+        return HttpResponseRedirect("/auth/auth/login/")
 
-
+# create new user
 def user_signup(request):
-    if request.method == "POST":
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Account created successfully! Please login !")
-            return redirect("/login/")
+    if not request.user.is_authenticated:
+        if request.method == "POST":
+            form = SignupForm(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Account created successfully! Please login !")
+                return redirect("/auth/auth/login/")
+        else:
+            form = SignupForm()
+        return render(request, "signup.html", {"form": form})
     else:
-        form = SignupForm()
-    return render(request, "signup.html", {"form": form})
+        messages.error(request, "You Already Logged In ! Please Logout to Create New Account !")
+        return HttpResponseRedirect("/")
 
-
+# login user
 def user_login(request):
     if not request.user.is_authenticated:
         if request.method == "POST":
@@ -68,14 +76,18 @@ def user_login(request):
                     login(request, user)
                     messages.success(request, "Logged In Successfully !")
                     return HttpResponseRedirect("/")
+            else:
+                messages.error(request, "Username & Password are not matching ! Please try again or Create New Account !")
         else:
             fm = LoginForm(request=request)
         context = {"form": fm}
         return render(request, "login.html", context)
     else:
+        messages.error(request, "You Already Logged In ! Please Logout to Login from another Account !")
         return HttpResponseRedirect("/")
 
-
+# logout user
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect("/login/")
+    messages.success(request, "Logged Out Successfully !")
+    return HttpResponseRedirect("/auth/auth/login/")

@@ -30,7 +30,7 @@
   <!-- Alert Messages -->
   {% if messages %}
     {% for message in messages %}
-      <div {% if message.tags %} class="fw-bold alert alert-{{message.tags}} text-center ms" {% endif %} role="alert">
+      <div {% if message.tags %} class="fw-bold alert {{message.tags}} text-center ms" {% endif %} role="alert">
         {{message}}
       </div>
     {% endfor %}
