@@ -8,6 +8,7 @@ media
 cleanup_unused_media.txt
 deployment.txt
 users.txt
+email_backend.txt
 
 # Backup files # 
 *.bak 
