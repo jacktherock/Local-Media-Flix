@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from .forms import ContactForm, MediaForm
-from .models import Contact, Media
+from .forms import MediaForm
+from .models import Media
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 
 # homepage
 def homepage(request):
@@ -13,17 +14,27 @@ def homepage(request):
 def about(request):
     return render(request, "about.html")
 
-# contact page & send contact message
+# # contact page & send contact message
 def contact(request):
     if request.method == "POST":
-        fm = ContactForm(request.POST)
-        if fm.is_valid():
-            fm.save()
-            messages.success(request, "Thank You for Contacting Us !")
-            return redirect("/contact/")
-    else:
-        fm = ContactForm()
-    return render(request, "contact.html", {"form": fm})
+        name = request.POST.get('name', '')
+        email = request.POST.get('email', '')
+        subject = request.POST.get('subject', '')
+        message = request.POST.get('message', '')
+        data = {
+            'name':name,
+            'email':email,
+            'subject':subject,
+            'message':message
+        }
+        message = '''
+        Message: {}
+        
+        From: {}
+        '''.format(data['message'], data['email'])
+        send_mail(data['subject'], message, '', ['sonawaneabhijeet273@gmail.com'])
+        messages.success(request, "Thank You For Contacting !")
+    return render(request, "contact.html", {})
 
 # view media
 def mediaUser(request):
@@ -96,27 +107,3 @@ def delete_user(request, id):
     else:
         return redirect("/auth/auth/login/")
 
-# admin can view all contacts received
-def allContacts(request):
-    if request.user.is_authenticated:
-        if request.user.is_superuser:
-            contacts = Contact.objects.all()
-            return render(request, "allcontacts.html", {"contacts": contacts})
-        else:
-            messages.error(request, "Unauthorized User Can't Access This Page !")
-            return redirect("/")
-    else:
-        return HttpResponseRedirect("/auth/auth/login/")
-
-# admin can delete received contacts
-def delete_contact(request, id):
-    if request.user.is_authenticated:
-        if request.user.is_superuser:
-            contact = Contact.objects.get(pk=id)
-            contact.delete()
-            return redirect("/authadmin/allcontacts/")
-        else:
-            messages.error(request, "Unauthorized User Can't Access This Page !")
-            return redirect("/")
-    else:
-        return redirect("/auth/auth/login/")

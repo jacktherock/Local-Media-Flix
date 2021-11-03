@@ -35,7 +35,6 @@
             <li><a class="dropdown-item" href="{% url 'media' %}">Your Media</a></li>
             {% if request.user.is_superuser %}
             <li><a class="dropdown-item" href="{% url 'allusers' %}">All Users</a></li>
-            <li><a class="dropdown-item" href="{% url 'allcontacts' %}">All Contacts</a></li>
             {% endif %}
           </ul>
         <li>

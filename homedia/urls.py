@@ -9,7 +9,5 @@ urlpatterns = [
     path('upload/', views.upload, name='upload'),
     path('delete/<int:id>/', views.deleteMedia, name='delete'),
     path('authadmin/deleteuser/<int:id>/', views.delete_user, name="deleteuser"),
-    path('authadmin/deletecontact/<int:id>/', views.delete_contact, name="deletecontact"),
     path('authadmin/allusers/', views.allUsers, name='allusers'),
-    path('authadmin/allcontacts/', views.allContacts, name='allcontacts'),
 ]
