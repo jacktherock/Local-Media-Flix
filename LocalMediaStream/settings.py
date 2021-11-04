@@ -36,7 +36,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = ['SECRET_KEY'] # Heroku Secret key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["localmediaflix.herokuapp.com", "127.0.0.1"]
 
@@ -139,12 +139,10 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 
-# if DEBUG:
-#     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-# else:
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+if DEBUG:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = BASE_DIR/'media'
 
@@ -159,12 +157,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 """------------------ Email Backend ------------------"""
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp-relay.sendinblue.com'
-# EMAIL_HOST_USER = ['EMAIL_HOST_USER']
 EMAIL_HOST_USER = config('EMAIL_HOST_USER') # Django .env email host
-# EMAIL_HOST_PASSWORD = ['EMAIL_HOST_PASSWORD']
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD') # Django .env email password
-# EMAIL_HOST_USER = 'smax9018@gmail.com'
-# EMAIL_HOST_PASSWORD = 'GbcUIMN2RFE8Wja0'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
