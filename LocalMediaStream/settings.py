@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-# from decouple import config
+from decouple import config
 
 from django.contrib.messages import constants as messages
 
@@ -159,10 +159,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 """------------------ Email Backend ------------------"""
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp-relay.sendinblue.com'
-EMAIL_HOST_USER = ['EMAIL_HOST_USER']
-# EMAIL_HOST_USER = config('EMAIL_HOST_USER') # Django .env email host
-EMAIL_HOST_PASSWORD = ['EMAIL_HOST_PASSWORD']
-# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD') # Django .env email password
+# EMAIL_HOST_USER = ['EMAIL_HOST_USER']
+EMAIL_HOST_USER = config('EMAIL_HOST_USER') # Django .env email host
+# EMAIL_HOST_PASSWORD = ['EMAIL_HOST_PASSWORD']
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD') # Django .env email password
 # EMAIL_HOST_USER = 'smax9018@gmail.com'
 # EMAIL_HOST_PASSWORD = 'GbcUIMN2RFE8Wja0'
 EMAIL_PORT = 587
