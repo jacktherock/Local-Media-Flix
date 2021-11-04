@@ -31,7 +31,7 @@ def contact(request):
         
         From: {}
         '''.format(data['message'], data['email'])
-        send_mail(subject, message, email, ['sonawaneabhijeet273@gmail.com'])
+        send_mail(data['subject'], message, '', ['sonawaneabhijeet273@gmail.com'])
         messages.success(request, "Thank You For Contacting !")
     return render(request, "contact.html", {})
     
