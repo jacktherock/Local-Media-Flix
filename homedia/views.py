@@ -14,7 +14,6 @@ def homepage(request):
 def about(request):
     return render(request, "about.html")
 
-# # contact page & send contact message
 def contact(request):
     if request.method == "POST":
         name = request.POST.get('name', '')
@@ -32,9 +31,10 @@ def contact(request):
         
         From: {}
         '''.format(data['message'], data['email'])
-        send_mail(data['subject'], message, '', ['sonawaneabhijeet273@gmail.com'])
+        send_mail(subject, message, email, ['sonawaneabhijeet273@gmail.com'])
         messages.success(request, "Thank You For Contacting !")
     return render(request, "contact.html", {})
+    
 
 # view media
 def mediaUser(request):
