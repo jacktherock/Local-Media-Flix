@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from decouple import config
 
 # homepage
 def homepage(request):
@@ -31,7 +32,7 @@ def contact(request):
         
         From: {}
         '''.format(data['message'], data['email'])
-        send_mail(data['subject'], message, '', ['sonawaneabhijeet273@gmail.com'])
+        send_mail(data['subject'], message, '', [config('EMAIL')])
         messages.success(request, "Thank You For Contacting !")
     return render(request, "contact.html", {})
     
