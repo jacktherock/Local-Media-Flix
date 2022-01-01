@@ -1,3 +1,12 @@
+/* Footer CSS */
+
+/* .foot-fix{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+} */
+
 .footer-basic {
   padding: 40px 0;
   color: antiquewhite;
@@ -57,7 +66,38 @@
   margin-bottom: 0;
 }
 
+/* My CSS */
+
 .bd {
   padding: 40px 0;
   background-color: antiquewhite;
+}
+
+.login-signup-fm {
+  border-radius: 15px;
+  padding: 5px 30px;
+}
+
+.upload {
+  border-radius: 15px;
+}
+
+.upload-fm {
+  padding: 30px 30px;
+}
+
+.uprofile {
+  border-radius: 15px;
+}
+
+.uprofile-fm {
+  padding: 30px 30px;
+}
+
+.changepass {
+  border-radius: 15px;
+}
+
+.changepass-fm {
+  padding: 30px 30px;
 }

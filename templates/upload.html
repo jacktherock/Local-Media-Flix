@@ -6,9 +6,9 @@
 
 <div class="container col-sm-10">
     <h2 class="text-center my-3 alert alert-warning">Add Media Files</h2>
-    <div class="container col-sm-6 mt-3 shadow pt-5 border-top mb-3" style="border-radius: 15px; padding: 5px 30px">
+    <div class="container col-sm-6 mt-3 shadow border-top mb-3 upload">
 
-        <form action="" method="post" novalidate enctype="multipart/form-data">
+        <form action="" method="post" novalidate enctype="multipart/form-data" class="upload-fm">
             {% csrf_token %}
             {% for fm in files %}
                 <div class="mt-2 mb-1">
