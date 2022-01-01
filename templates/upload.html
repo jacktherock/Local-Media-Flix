@@ -13,10 +13,10 @@
             {% for fm in files %}
                 <div class="mt-2 mb-1">
                     {{fm.label_tag}}
-                </div>
-                <small class="text-danger fw-bold">
-                    {{fm.errors|striptags}}
-                </small>
+                    <small class="text-danger fw-bold">
+                        {{fm.errors|striptags}}
+                    </small>
+                </div>      
                 {{fm}}
             {% endfor %}
 
