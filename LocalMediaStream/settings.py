@@ -36,7 +36,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = ['SECRET_KEY'] # Heroku Secret key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = Faalse
+DEBUG = False
 
 ALLOWED_HOSTS = ["localmediaflix.herokuapp.com", "127.0.0.1"]
 
