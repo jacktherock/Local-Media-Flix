@@ -88,7 +88,8 @@ WSGI_APPLICATION = 'LocalMediaStream.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-
+"""------------------ Databases ------------------"""
+## Sqlite Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -96,8 +97,7 @@ DATABASES = {
     }
 }
 
-
-# MongoDB Database
+## MongoDB Database
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'djongo',
