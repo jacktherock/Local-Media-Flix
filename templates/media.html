@@ -10,8 +10,8 @@
     <a href="{% url 'upload' %}" class="btn btn-success mx-2">Upload Media <i class="fas fa-upload"></i></a>
 
     {% if media %}
-    <h4 class="container text-center  my-3 alert-warning border">What Are You Watching Today ?</h4>
-    <div class="container row my-4 ">
+    <h4 class="container text-center my-3 alert-warning text-black" style="padding: 5px; border-radius: 180px;">What Are You Watching Today ?</h4>
+    <div class="container row my-4">
 
         {% for file in media %}
         <div class="col-sm-4 card mx-1 my-2" style="width: 19rem;">
@@ -20,9 +20,6 @@
             </video>
 
             <div class="card-body">
-                {% if request.user.is_superuser %}
-                    <span class="float-end badge rounded-pill bg-primary">{{file.user.username|capfirst}}</span>
-                {% endif %}
                 <h6 class="card-title">{{file.title|capfirst}}</h5>
                 <small class="text-muted">{{file.created_at}}</small> 
             </div>
@@ -32,6 +29,9 @@
                     {% csrf_token %}
                     <button type="submit" class="float-end btn btn-danger btn-sm"> <i class="fas fa-trash-alt"></i></button>
                 </form>
+                {% if request.user.is_superuser %}
+                    <span class="badge rounded-pill bg-primary">{{file.user.username|capfirst}}</span>
+                {% endif %}
             </div>
         </div>
         {% endfor %}

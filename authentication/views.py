@@ -76,8 +76,8 @@ def user_login(request):
                     login(request, user)
                     messages.success(request, "Logged In Successfully !")
                     return HttpResponseRedirect("/")
-            else:
-                messages.error(request, "Username & Password are not matching ! Please try again or Create New Account !")
+            # else:
+            #     messages.error(request, "Username & Password are not matching ! Please try again or Create New Account !")
         else:
             fm = LoginForm(request=request)
         context = {"form": fm}
