@@ -5,24 +5,24 @@
 {% block content %}
 <div class="container">
   <div class="row mb-3">
-    <h3 class="text-center mt-3 alert alert-warning">Create New user</h3>
-  <div class="col-sm-6 offset-sm-3">
+    <h3 class="text-center alert mt-3 alert-warning">Create New user</h3>
+    <div class="col-sm-6 offset-sm-3">
 
-    <form action="" method="post" novalidate class="shadow p-5 border-top login-signup-fm">
-      {% csrf_token %}
-      {% for fm in form %}
+      <form action="" method="post" novalidate class="shadow p-5 border-top" style="border-radius: 15px; padding: 5px 30px;">
+        {% csrf_token %}
+        {% for fm in form %}
         <div class="mt-2 mb-1">
           <i class="fas fa-user"></i> {{fm.label_tag}}
           <small class="text-danger fw-bold">
             {{fm.errors|striptags}}
           </small>
         </div>
-        
+
         {{fm}}
-      {% endfor %}
-      <input type="submit" class="btn btn-primary my-3" value="Create User">
-    </form>
+        {% endfor %}
+        <input type="submit" class="btn btn-primary my-3" value="Create User">
+      </form>
+    </div>
   </div>
-</div>
 </div>
 {% endblock content %}

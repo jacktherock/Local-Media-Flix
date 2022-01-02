@@ -15,7 +15,7 @@
 
         {% for file in media %}
         <div class="col-sm-4 card mx-1 my-2" style="width: 19rem;">
-            <video class="embed-responsive embed-responsive-16by9  mt-2" poster="{{file.thumbnail.url}}" id="{{user.id}}" height="150px" preload="none" controls="controls">
+            <video class="embed-responsive embed-responsive-16by9 mt-2" poster="{{file.thumbnail.url}}" id="{{user.id}}" height="150px" preload="none" controls="controls">
                 <source src="{{file.video.url}}" type="video/mp4" />
             </video>
 

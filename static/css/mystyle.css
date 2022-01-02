@@ -72,32 +72,3 @@
   padding: 40px 0;
   background-color: antiquewhite;
 }
-
-.login-signup-fm {
-  border-radius: 15px;
-  padding: 5px 30px;
-}
-
-.upload {
-  border-radius: 15px;
-}
-
-.upload-fm {
-  padding: 30px 30px;
-}
-
-.uprofile {
-  border-radius: 15px;
-}
-
-.uprofile-fm {
-  padding: 30px 30px;
-}
-
-.changepass {
-  border-radius: 15px;
-}
-
-.changepass-fm {
-  padding: 30px 30px;
-}

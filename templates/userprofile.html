@@ -5,8 +5,8 @@
 {% block content %}
 <div class="container col-sm-10">
     <h2 class="text-center my-3 alert alert-warning">Update Profile</h2>
-    <div class="container col-sm-6 my-3 shadow border-top uprofile">
-        <form action="" method="post" novalidate class="uprofile-fm">
+    <div class="container col-sm-6 my-3 shadow border-top" style="border-radius: 15px;">
+        <form action="" method="post" novalidate style="padding: 30px 30px;">
             {% csrf_token %}
             {% for fm in form %}
                 <div class="mt-2 mb-1">
@@ -18,7 +18,8 @@
                 {{fm}}
             {% endfor %}
             <input type="submit" class="btn btn-success my-3" value="Update">
-            <a class="btn btn-secondary mx-2" href="{% url 'media' %}">Back</a>
+            {% comment %} <a class="btn btn-secondary mx-2" href="{% url 'media' %}">Back</a> {% endcomment %}
+            <input type="button" value="Previous Page" class="btn btn-secondary mx-2" onClick="javascript:history.go(-1);">
         </form>
     </div>
 </div>

@@ -16,7 +16,7 @@ def adminCreateUser(request):
                 if fm.is_valid():
                     fm.save()
                     messages.success(request, "New User Created Successfully !")
-                    return redirect("/admincreateuser/")
+                    return redirect("/auth/admincreateuser/")
             else:
                 fm = AdminCreateUserForm()
         else:
