@@ -30,7 +30,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-# SECRET_KEY = 'django-insecure-(#fmr$rz)7$t6jhjd6@azy@gee!!1st)=_351+7%-spy^pgi(e'
 # SECRET_KEY = config('SECRET_KEY') # Django .env secret key
 SECRET_KEY = ['SECRET_KEY'] # Heroku Secret key
 
@@ -89,11 +88,15 @@ WSGI_APPLICATION = 'LocalMediaStream.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 """------------------ Databases ------------------"""
-## Sqlite Database
+## Mysql database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'localmediaflixdb-django',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 """-----------------------------------------------"""
