@@ -62,8 +62,6 @@ Now Local Media Flix app server will run properly.
         ![](github/media.JPG)
     ------
 
-## Contributer
-[Pratik Chopane](https://github.com/prateiku)
 
 ## Support
 I need help on front-end and back-end for adding more features .
