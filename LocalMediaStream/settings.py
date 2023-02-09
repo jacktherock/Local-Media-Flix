@@ -33,7 +33,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY') # Django .env secret key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [".vercel.app", ".now.sh", "127.0.0.1"]
 
@@ -90,8 +90,17 @@ WSGI_APPLICATION = 'LocalMediaStream.wsgi.application'
 # Sqlite Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # sqlite3 database
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+
+        # postgresql database
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'localmediaflix-data',
+        'USER': 'postgres',
+        'PASSWORD': 'rootabhi',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 """-----------------------------------------------"""
