@@ -102,18 +102,11 @@ DATABASES = {
         # 'PASSWORD': 'rootabhi',
         # 'HOST': 'localhost',
         # 'PORT': '',
-
-        # ONLINE postgresql database
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': 'railway',
-        # 'USER': 'postgres',
-        # 'PASSWORD': 'T7uGKi4948UJmKLozozP',
-        # 'HOST': 'containers-us-west-171.railway.app',
-        # 'PORT': '6939',
     }
 }
 
-DATABASES['default'] = dj_database_url.config()
+DATABASES['default'] = dj_database_url.config() # Only turned on in production environment
+
 
 """-----------------------------------------------"""
 
