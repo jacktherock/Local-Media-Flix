@@ -92,20 +92,20 @@ WSGI_APPLICATION = 'LocalMediaStream.wsgi.application'
 DATABASES = {
     'default': {
         # sqlite3 database
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
 
         # LOCAL postgresql database
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': 'localmediaflix-data',
-        # 'USER': 'postgres',
-        # 'PASSWORD': 'rootabhi',
-        # 'HOST': 'localhost',
-        # 'PORT': '',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'localmediaflix-data',
+        'USER': 'postgres',
+        'PASSWORD': 'rootabhi',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
-DATABASES['default'] = dj_database_url.config() # Only turned on in production environment
+# DATABASES['default'] = dj_database_url.config() # Only turned on in production environment
 
 
 """-----------------------------------------------"""
