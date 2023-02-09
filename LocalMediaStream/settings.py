@@ -31,12 +31,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # SECRET_KEY = config('SECRET_KEY') # Django .env secret key
-SECRET_KEY = ['SECRET_KEY'] # Heroku Secret key
+SECRET_KEY = 'hh1r80-5#qcm$24*bepq70)_^e6leb&tcju0x)qfj9c-d(26tx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["localmediaflix.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = [".vercel.app", ".now.sh", "localmediaflix.herokuapp.com", "127.0.0.1"]
 
 
 # Application definition
@@ -140,10 +140,13 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 
-if DEBUG:
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# if DEBUG:
+#     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# else:
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 MEDIA_ROOT = BASE_DIR/'media'
 
@@ -153,6 +156,7 @@ MEDIA_ROOT = BASE_DIR/'media'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 
 """------------------ Email Backend ------------------"""
