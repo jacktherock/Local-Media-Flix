@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 from decouple import config
+import dj_database_url
 
 from django.contrib.messages import constants as messages
 
@@ -35,7 +36,7 @@ SECRET_KEY = config('SECRET_KEY') # Django .env secret key
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".vercel.app", ".now.sh", "127.0.0.1"]
+ALLOWED_HOSTS = [".vercel.app", ".now.sh", "127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -91,18 +92,29 @@ WSGI_APPLICATION = 'LocalMediaStream.wsgi.application'
 DATABASES = {
     'default': {
         # sqlite3 database
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
 
-        # postgresql database
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'localmediaflix-data',
-        'USER': 'postgres',
-        'PASSWORD': 'rootabhi',
-        'HOST': 'localhost',
-        'PORT': '',
+        # LOCAL postgresql database
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # 'NAME': 'localmediaflix-data',
+        # 'USER': 'postgres',
+        # 'PASSWORD': 'rootabhi',
+        # 'HOST': 'localhost',
+        # 'PORT': '',
+
+        # ONLINE postgresql database
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # 'NAME': 'railway',
+        # 'USER': 'postgres',
+        # 'PASSWORD': 'T7uGKi4948UJmKLozozP',
+        # 'HOST': 'containers-us-west-171.railway.app',
+        # 'PORT': '6939',
     }
 }
+
+DATABASES['default'] = dj_database_url.config()
+
 """-----------------------------------------------"""
 
 
@@ -153,8 +165,8 @@ MEDIA_URL = '/media/'
 # else:
 #     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATICFILES_DIRS = [BASE_DIR/'static']
+STATIC_ROOT = BASE_DIR/'staticfiles_build'/'static'
 
 MEDIA_ROOT = BASE_DIR/'media'
 

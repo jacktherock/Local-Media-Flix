@@ -3,13 +3,9 @@
 *.pot
 *.pyc
 __pycache__
-db.sqlite3
+*.sqlite3
 media
-cleanup_unused_media.txt
-deployment.txt
 Users.txt
-email_backend.txt
-settings.txt
 
 # Backup files # 
 *.bak 
