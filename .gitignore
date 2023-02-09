@@ -7,7 +7,7 @@ db.sqlite3
 media
 cleanup_unused_media.txt
 deployment.txt
-users.txt
+Users.txt
 email_backend.txt
 settings.txt
 
